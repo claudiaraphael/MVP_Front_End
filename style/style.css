@@ -1,61 +1,44 @@
 :root {
-    --fundo: #381f4a;
-    --bg-main: #46275d;
-    --bg-alt: #714c91;
-    --destaques: #98c75d;
-    --luz: #98c75d;
-    --produto: #41a728;
-    --display: #df5f08;
+   :root {
+  /* Fontes */
+  --font-primary: 'Roboto', Arial, sans-serif;
+  --font-secondary: 'Open Sans', Helvetica, sans-serif;
+
+  /* Cores principais */
+  --color-primary: #41a728;       /* cor principal, verde floresta claro */
+  --color-secondary: #46275d;     /* cor secundária, roxo evangelion */
+  
+  /* Cores de destaque */
+  --color-accent: #ac413f;        /* amarelo para realces e destaques */
+
+  /* Cores de detalhe */
+  --color-detail-light: #a8d56e;  /* cinza claro para bordas, sombras suaves */
+  --color-detail-dark: #2e6e1e;   /* cinza escuro para textos secundários */
+
+  /* Cores de fundo */
+  --color-bg-light: #fafafa;      /* fundo claro */
+  --color-bg-dark: #363650;       /* fundo escuro para temas noturnos */
+
+  /* Cores para texto */
+  --color-text-primary: #a8d56e;  /* texto principal, quase preto */
+  --color-text-secondary: #f6f0f0; /* texto secundário, cinza moderado */
+
+  /* Outros */
+  --border-radius: 4px;           /* bordas arredondadas padrão */
+  --spacing-unit: 8px;            /* unidade base de espaçamento */
 }
 
-* {
-    background-color: var(--bg-main);
 }
 
-.container {
-    height: 100vh;
-    border: 1px solid red;
-    border-radius: 15px;
-    text-align: center;
+body {
+  font-family: var(--font-primary);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-light);
 }
 
-.garrafais {
-    text-align: center;
-    justify-content: center;
-    font-size: 55px;
-    color: var(--destaques);
-}
-
-nav {
-    border: 1px solid red;
-    color: #98c75d;
-    /* transformar numa sidebar */
-}
-
-.user-input {
-    border: 1px solid rgb(7, 3, 3);
-    border-radius: 26px;
-    margin: 40px;
-    padding: 8px;
-    color: var(--display);
-    font-size: 20px;
-        text-align: center;
-    justify-content: center;
-}
-
-.search {
-    color:var(--luz);
-    border-radius: 15px;
-    padding: 5px 10px;
-    text-align: center;
-    justify-content: center;
-}
-
-ul, li {
-    background-color: rgb(161, 223, 223);
-    color: black;
-}
-
-.historico-produtos {
-    border: 1px solid red;
+button {
+  background-color: var(--color-primary);
+  color: var(--color-bg-light);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-unit);
 }
