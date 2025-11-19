@@ -6,9 +6,18 @@
   /* Gradientes */
   --grad-purple: #46275d linear-gradient(var(--color-secondary), var(--color-text-primary), var(--color-bg-light));
 
+  /* Escolhas Finais */
+  --dark-green: #0d5024;
+  --input-grey: #657557; /* usar para inputs */
+  --light-green: #c8f578; /* usar para detalhes leves ou botoes */
+
+
+
   /* Inspos */
-    --solar-punk-concrete: #81a7f0;
+    --solar-punk-tree: #59482c;
     --solar-punk-green: #3b9fa9;
+    --solar-punk-yellow: #f0e161;
+    --solar-punk-light: #f2f7d5;
 
 
   /* Cores principais */
@@ -69,18 +78,19 @@ navbar {
   text-align: center;
   justify-content: center;
   color: var(--color-text-primary);
-  /*colocar bg color*/
+  margin-top: 14px;
+  margin-bottom: 14px;
+  gap: 20px;
+  background-color: var(--solar-punk-tree);
   /*colocar so em ingles ou so em pt br*/
 }
 
 body {
-  color: var(--color-text-secondary);
+  
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   
 }
-
-
 
 .search-container {
   display: flex;
@@ -89,27 +99,49 @@ body {
   border-radius: 36px;
   text-align: center;
   justify-content: center;
-  margin: 60px  
+  margin: 60px 0;
+  background-color: var(--solar-punk-tree);
+}
+
+.user-input {
+  flex: 1; /* faz o input ocupar o máximo de espaço possível */
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 36px;
+  border: none;
+  outline: none; /* remove a borda padrão ao focar */
+  background-color: grey;
+  color: #0000;
+}
+
+button {
+  text-align: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  font-size: 16px;
+  border-radius: 36px;
+  padding: 10px 24px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap; 
+  background-color: var(--solar-punk-tree);
 }
 
 
 .container {
   height: 100vh;
   padding: 20px;
-  background-color: var(--color-);
   border-radius: 36px;
 }
 
 
-.user-input::placeholder {
-  color: var(--color-detail-light);
-  opacity: 0.8;
-
-}
-
 img {
   height: 10rem;
   width: fit-content;
+}
+
+.composicao {
+  height: max-content;
 }
 
 .resultado {
@@ -117,8 +149,8 @@ img {
   text-align: justify;
   justify-content: space-around;
   font-family:Verdana, Geneva, Tahoma, sans-serif, Times, serif, Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--solar-punk-green);
-
+  color: var(--s);
+  gap: 20px;
 }
 
 .produto {
@@ -128,16 +160,14 @@ img {
 
 }
 
-
-button {
-  text-align: center;
-  justify-content: center;
-  color: var(--color-detail-light);
-  border-radius: 36px;
-  padding: 12px 24px;
-  border: none;
-  cursor: pointer;
-  white-space: nowrap; 
-
+.produto {
+  display: flex;
+  gap: 20px;
+  height: 100%;
+  background-color: var(--solar-punk-tree);
+  align-items: center;
+  justify-content:space-between;
 }
+
+
 
