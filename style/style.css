@@ -53,7 +53,6 @@
   }
 
 * {
-  border:  1px solid red;
   box-sizing: border-box;
   background-color: #0d5024;
   color: var(--color-text-primary)
@@ -163,21 +162,28 @@ img {
   justify-content:space-between;
 }
 
-.produto {
+ul li {
   display: flex;
-  align-items: center;
-  justify-content:space-between;
-
-}
-
-.produto {
-  display: flex;
-  gap: 20px;
-  height: 100%;
+  flex-direction: column;
+  gap: 10px;
   background-color: var(--solar-punk-tree);
+}
+
+.produto {
+  display: flex;
   align-items: center;
   justify-content:space-between;
+  border-radius: 36px;
+  gap: 20px;
+  background-color: var(--solar-punk-tree);
+
 }
 
 
+p, li {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background-color: var(--solar-punk-tree);
+}
 
