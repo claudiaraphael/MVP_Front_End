@@ -3,6 +3,10 @@
   --font-primary: 'Roboto', Arial, sans-serif;
   --font-secondary: 'Open Sans', Helvetica, sans-serif;
 
+  /* Gradientes */
+  --grad-purple: #46275d linear-gradient(var(--color-secondary), var(--color-text-primary), var(--color-bg-light));
+
+
   /* Cores principais */
   --mario-green: #01c255;
   --color-primary: #41a728;       /* cor principal, verde floresta claro */
@@ -30,11 +34,14 @@
 
   /* Fonts */
     --font-headlines: 'Noto Sans JP', sans-serif;
-}
+  
+
+  }
 
 * {
   border:  1px solid red;
   background-color: var(--color-mario-green);
+  box-sizing: border-box;
 }
 
 header {
@@ -57,7 +64,8 @@ navbar {
   align-items: center;
   text-align: center;
   justify-content: center;
-  background-color: /*colocar so em ingles ou so em pt br*/
+  /*colocar bg color*/
+/*colocar so em ingles ou so em pt br*/
 }
 
 body {
@@ -90,10 +98,6 @@ body {
   margin: 60px  
 }
 
-.test {
-  text-transform: capitalize;
-}
-
 .user-input::placeholder {
   color: var(--color-detail-light);
   opacity: 0.8;
@@ -101,7 +105,7 @@ body {
 }
 
 img {
-  height: 200px;
+  height: 10rem;
   width: fit-content;
 }
 
@@ -109,7 +113,14 @@ img {
   display: flex;
   text-align: justify;
   justify-content: space-around;
+  font-family:Verdana, Geneva, Tahoma, sans-serif, Times, serif, Tahoma, Geneva, Verdana, sans-serif;
+
 }
+
+.produto-1 {
+
+}
+
 
 button {
   text-align: center;
