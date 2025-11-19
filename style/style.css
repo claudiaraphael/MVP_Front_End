@@ -6,11 +6,17 @@
   /* Gradientes */
   --grad-purple: #46275d linear-gradient(var(--color-secondary), var(--color-text-primary), var(--color-bg-light));
 
+  /* Inspos */
+    --solar-punk-concrete: #81a7f0;
+    --solar-punk-green: #3b9fa9;
+
 
   /* Cores principais */
-  --mario-green: #01c255;
-  --color-primary: #41a728;       /* cor principal, verde floresta claro */
-  --color-secondary: #46275d;     /* cor secundária, roxo evangelion */
+  --color-primary: #0d5024;       /* cor principal, verde floresta claro */
+  --color-secondary: #46275d;  
+  --color-text-primary: #fbc05a;
+
+  /* cor secundária, roxo evangelion */
   
   /* Cores de destaque */
   --color-accent: #ac413f;        /* amarelo para realces e destaques */
@@ -21,7 +27,7 @@
 
   /* Cores de fundo */
   --color-bg-light: #fafafa;      /* fundo claro */
-  --color-bg-dark: #363650;       /* fundo escuro para temas noturnos */
+  --color-bg-dark: #5d5dc2;       /* fundo escuro para temas noturnos */
   --user-input: #657557;
 
   /* Cores para texto */
@@ -44,16 +50,14 @@
   box-sizing: border-box;
 }
 
-header {
-  border-radius: 36px;
-}
-
 header h1, h2, h3 {
   font-family: var(--font-headlines);
   font-size: 46px;
   text-align: center;
   justify-content: center;
   color: var(--color-text-primary);
+  border-radius: 36px;
+
 
 }
 
@@ -73,19 +77,11 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   background-color: var(--color-bg-dark);
-
+  
 }
 
 .garrafais {
   text-shadow: 0 5px 10px var(--color-detail-dark);
-}
-
-.container {
-  height: 100vh;
-  padding: 20px;
-  background-color: var(--color-);
-  border-radius: 36px;
-  box-shadow: 0 0 10px var(--color-detail-light);
 }
 
 .search-container {
@@ -97,6 +93,15 @@ body {
   justify-content: center;
   margin: 60px  
 }
+
+
+.container {
+  height: 100vh;
+  padding: 20px;
+  background-color: var(--color-);
+  border-radius: 36px;
+}
+
 
 .user-input::placeholder {
   color: var(--color-detail-light);
@@ -114,10 +119,14 @@ img {
   text-align: justify;
   justify-content: space-around;
   font-family:Verdana, Geneva, Tahoma, sans-serif, Times, serif, Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--solar-punk-green);
 
 }
 
-.produto-1 {
+.produto {
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
 
 }
 
