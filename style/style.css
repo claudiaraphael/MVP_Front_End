@@ -10,11 +10,11 @@
   --dark-green: #0d5024;
   --input-grey: #657557; /* usar para inputs */
   --light-green: #c8f578; /* usar para detalhes leves ou botoes */
-
+  --inputs: #043425;
 
 
   /* Inspos */
-    --solar-punk-tree: #59482c;
+    --solar-punk-tree: #043425;
     --solar-punk-green: #3b9fa9;
     --solar-punk-yellow: #f0e161;
     --solar-punk-light: #f2f7d5;
@@ -100,7 +100,7 @@ body {
   text-align: center;
   justify-content: center;
   margin: 60px 0;
-  background-color: var(--solar-punk-tree);
+  background-color: var(--light-green);
 }
 
 .user-input {
@@ -110,8 +110,12 @@ body {
   border-radius: 36px;
   border: none;
   outline: none; /* remove a borda padrão ao focar */
-  background-color: grey;
-  color: #0000;
+  color: var(--color-text-primary);
+  background-color: var(--inputs);
+}
+
+.user-input::placeholder {
+  color: aqua;
 }
 
 button {
@@ -151,6 +155,12 @@ img {
   font-family:Verdana, Geneva, Tahoma, sans-serif, Times, serif, Tahoma, Geneva, Verdana, sans-serif;
   color: var(--s);
   gap: 20px;
+  background-color: var(--solar-punk-tree);
+  border-radius: 36px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
 }
 
 .produto {
