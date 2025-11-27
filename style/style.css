@@ -5,7 +5,8 @@
 
   /* Gradientes */
   --grad-purple: #46275d linear-gradient(var(--color-secondary), var(--color-text-primary), var(--color-bg-light));
-
+  --grad-green: #0d5024 linear-gradient(var(--dark-green), var(--light-green), var(--input-grey));
+  
   /* Escolhas Finais */
   --dark-green: #0d5024;
   --input-grey: #657557; /* usar para inputs */
@@ -38,7 +39,7 @@
   --color-bg-light: #fafafa;      /* fundo claro */
   --color-bg-dark: #5d5dc2;       /* fundo escuro para temas noturnos */
   --user-input: #657557;
-
+  --radial-gradient: radial-gradient(circle, #0d5024, #043425, #3b9fa9);
   /* Cores para texto */
   --color-text-secondary: #a8d56e; /* texto secundário, cinza moderado */
 
@@ -52,10 +53,18 @@
 
   }
 
+html, body {
+  /* Garante que ambos os elementos ocupem toda a altura da tela */
+  height: 100%; 
+  /* Remove as margens e paddings padrão do navegador */
+  margin: 0; 
+  padding: 0;
+}
+
 * {
   box-sizing: border-box;
-  background-color: #0d5024;
-  color: var(--color-text-primary)
+  color: var(--color-text-primary);
+  
 }
 
 header h1, h2, h3 {
@@ -72,6 +81,7 @@ header h1, h2, h3 {
 navbar {
   display: flex;
   border-radius: var(--border-radius);
+  border: 3px solid var(--color-detail-light);
   padding: 10px;
   align-items: center;
   text-align: center;
@@ -85,16 +95,23 @@ navbar {
 }
 
 body {
-  
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
+  /* Gradiente radial, círculo, posicionado no centro. */
+  background: url('./assets/bg0.jpg');
+  /* Cor de fallback (se o gradiente não carregar) */
+  background-color: #000000;
   
+  /* Altura e largura para visualização (ajuste conforme necessário) */
+  height: 100vh;
+  width: 100%;
 }
 
 .search-container {
   display: flex;
   gap: 10px;
   align-items: center; /* alinha itens no eixo vertical */
+  border: 3px solid var(--color-detail-light);
   border-radius: 36px;
   text-align: center;
   justify-content: center;
@@ -134,6 +151,7 @@ button {
 .container {
   height: 100vh;
   padding: 20px;
+  
   border-radius: 36px;
 }
 
