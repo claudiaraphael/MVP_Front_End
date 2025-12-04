@@ -98,7 +98,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   /* Gradiente radial, círculo, posicionado no centro. */
-  background: url('./assets/bg0.jpg');
+  background-image: url('/assets/bg0.jpg');
   /* Cor de fallback (se o gradiente não carregar) */
   background-color: #000000;
   
@@ -147,14 +147,26 @@ button {
   background-color: var(--solar-punk-tree);
 }
 
+.newItem {
+    background-color: rgb(225, 222, 199);
+    padding: 30px 40px;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.newItem:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 
 .container {
   height: 100vh;
   padding: 20px;
-  
   border-radius: 36px;
 }
-
 
 img {
   height: 10rem;
@@ -163,6 +175,13 @@ img {
 
 .composicao {
   height: max-content;
+}
+
+
+.score {
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 3rem;
+  width: 100px;
 }
 
 .resultado {
