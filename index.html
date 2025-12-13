@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style2.css">
-    <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
@@ -14,40 +13,40 @@
     <div class="container">
         <header>
             
-            <h1 class="garrafais">ANTI GW</h1>            
+            <h1 class="garrafais">ANTI GREEN WASHING</h1>            
             
         </header>
         <navbar>
-            <!-- Adicionar rotas para as endpoints com JS -->
-            <a href="rota-historico">Histórico de Produtos</a> 
-            <a href="rota-add-produto">Adicione um Novo Produto</a>
-            <a href="">O que é Green Washing?</a>
-            <a href="rota-sobre-anti-gh">Anti Green Washing</a>
-            <a href="rota-sobre-off">O que é Open Food Facts?</a>
+            <a href="#cadastro-usuario">Cadastro</a> 
+            <a href="#historico-produtos">Histórico de Produtos</a> 
+            <a href="#add-produto">Adicione um Novo Produto</a>
+            <a href="#o-que-e-gw">O que é Green Washing?</a>
+            <a href="#sobre-anti-gw">Anti Green Washing</a>
+            <a href="#sobre-off">O que é Open Food Facts?</a>
         </navbar>
 
         <div class="search-container">
-            <input type="text" class="user-input" placeholder="Sabão Eco Green, 7891234567890"> 
+            <input type="text" id="userInput" class="user-input" placeholder="Sabão Eco Green, 7891234567890"> 
             <button onclick='getProduct()' class="search">Search</button>
         </div>
 
-        <div class="resultado">
-            <img src="assets/sabao_eco_green.png" class="imagem-roduto">       
+        <div class="resultado" id="resultadoProduto">
+            <img src="assets/sabao_eco_green.png" class="imagem-produto" alt="Imagem do Produto">       
             <div class="infos-produto"></div>
             <ul class="detalhes-produto">
                 <li>
-                    Nome: sabao eco green
+                    Nome: <span id="nomeProduto">sabao eco green</span>
                 </li>
                 <li>
                     Selos:
-                    <ol>
+                    <ol id="selosProduto">
                         <li>Autenticidade Cop 30</li>
                         <li>ISO: 538000</li>
                         <li>Inquisição do Projeto Tamar</li>
                     </ol>
                 </li>
                 <li>
-                    Score: 95,6% sustentável
+                    Score: <span id="scoreProduto" class="score-display">95,6% sustentável</span>
                 </li>
                 <li class="test">
                     informações nutricionais
@@ -55,32 +54,58 @@
             </ul>     
         </div>
 
-        <h2>Adicione um Novo Produto</h2>
+        <hr>
 
-         <!-- Opções para adicionar um novo item -->
-    <section class="newItem">
-        <input type="text" id="newInput" placeholder="Adicionar novo item:">
-        <input type="text" id="newQuantity" placeholder="Quantidade:">
-        <input type="text" id="newPrice" placeholder="Valor:">
-        <button onclick="newItem()" class="addBtn">Adicionar</button>
-    </section>
+        <section id="cadastro-usuario" class="section-block">
+            <h2>Cadastre-se para Salvar Seu Histórico</h2>
+            <form class="cadastro-form">
+                <input type="text" placeholder="Seu Nome Completo" required>
+                <input type="email" placeholder="Seu Melhor E-mail" required>
+                <input type="password" placeholder="Crie uma Senha" required>
+                <button type="submit" class="addBtn">Criar Conta</button>
+            </form>
+        </section>
+
+        <hr>
+
+         <h2 id="add-produto">Adicione um Novo Produto</h2>
+
+         <section class="newItem">
+            <input type="text" id="newInput" placeholder="Nome do Produto:">
+            <input type="text" id="newScore" placeholder="Score de Sustentabilidade (ex: 90):">
+            <input type="text" id="newImage" placeholder="URL da Imagem:">
+            <button onclick="addNewItem()" class="addBtn">Adicionar Produto</button>
+        </section>
+
+        <hr>
          
-        <div class="historico-produtos">
+        <div id="historico-produtos" class="historico-produtos">
             <h2>Histórico de Produtos</h2>
-            <!-- Tabela com items existentes -->
-    <section class="items">
-        <table class="myTable">
-            <td>
-                <th>Produto</th>
-                <th>Score</th>
-                <th><img src="assets/sabao_eco_green.png" alt="sabao eco green">Sabão em Pó EcoGreen: <div class="score">90% confiavel</div></th>
-                <th><img src="assets/esponja_eco.jpg" alt="shampoo vegano">Shampoo Vegano <div class="score">50% confiavel</div></th>
-            </td>
-        </table>
-    </section>    
+            <section class="items">
+                <table class="myTable">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historicoTbody">
+                        <tr>
+                            <td><img src="assets/sabao_eco_green.png" alt="Sabão EcoGreen"> Sabão em Pó EcoGreen</td>
+                            <td><div class="score">90% confiável</div></td>
+                        </tr>
+                        <tr>
+                            <td><img src="assets/esponja_eco.jpg" alt="Shampoo Vegano"> Shampoo Vegano</td>
+                            <td><div class="score low-score">50% confiável</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>    
         </div>    
 
-        <article>
+        <hr>
+
+        <article id="sobre-anti-gw">
             <h2>Sobre a Anti Green Washing</h2>
             <p>
                 A Anti Green Washing é uma plataforma dedicada a identificar e combater práticas de greenwashing adotadas por empresas e produtos alimentícios. Nosso objetivo é fornecer aos consumidores informações transparentes e confiáveis sobre a sustentabilidade dos produtos que consomem, ajudando-os a fazer escolhas mais conscientes e responsáveis.
@@ -91,7 +116,7 @@
         
 
 
-            <div class="green-washing">
+            <div id="o-que-e-gw" class="green-washing">
             <h2>O que é Green Washing?</h2>
 
             <p>
@@ -110,8 +135,10 @@
                 </ul>
             </div>    
         </article>
+        
+        <hr>
             
-        <div>
+        <div id="sobre-off">
             <h2>O que é Open Food Facts?</h2>
             <p>
                 Open Food Facts is a free, open, and collaborative database of food products from around the world, created by thousands of volunteers. It includes detailed information about each product such as ingredients, allergens, nutritional values (including Nutri-Score), packaging, brands, labels (organic, gluten-free, vegan, etc.), and traceability data. The database is open data, licensed for reuse by anyone for any purpose, and it supports apps for scanning products to access and contribute data. It aims to help consumers make better food choices and also supports scientific and educational uses. The project was launched in 2012 and now contains millions of products contributed by a global community through apps and websites

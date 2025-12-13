@@ -5,21 +5,7 @@
 const produto = document.getElementById("user-input");
 
 // 1 - pega o produto
-function getProduct(name, barcode) {
-  let url = 'http://127.0.0.1:5000/product';
-  name=name;
-  barcode=barcode;
-  fetch(url, {
-    method: 'get',
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      data.product.forEach(item => insertList(item.name, item.barcode))
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-}
+
 // 2 - pega os selos de sustentabilidaade da info da endpoint da api
 // 3 - compara com os verdadeiros selos dos produtos
 // 4 - da o score de sustentabilidade
