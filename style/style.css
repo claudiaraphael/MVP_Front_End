@@ -1,226 +1,310 @@
+/* Importação das fontes do Google Fonts */
+/* family=Noto+Sans+JP:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800 */
+
+/* Variáveis de Cores */
 :root {
-  /* Fontes */
-  --font-primary: 'Roboto', Arial, sans-serif;
-  --font-secondary: 'Open Sans', Helvetica, sans-serif;
-
-  /* Gradientes */
-  --grad-purple: #46275d linear-gradient(var(--color-secondary), var(--color-text-primary), var(--color-bg-light));
-  --grad-green: #0d5024 linear-gradient(var(--dark-green), var(--light-green), var(--input-grey));
-  
-  /* Escolhas Finais */
-  --dark-green: #0d5024;
-  --input-grey: #657557; /* usar para inputs */
-  --light-green: #c8f578; /* usar para detalhes leves ou botoes */
-  --inputs: #043425;
-
-
-  /* Inspos */
-    --solar-punk-tree: #043425;
-    --solar-punk-green: #3b9fa9;
-    --solar-punk-yellow: #f0e161;
-    --solar-punk-light: #f2f7d5;
-
-
-  /* Cores principais */
-  --color-primary: #0d5024;       /* cor principal, verde floresta claro */
-  --color-secondary: #46275d;  
-  --color-text-primary: #fbc05a;
-
-  /* cor secundária, roxo evangelion */
-  
-  /* Cores de destaque */
-  --color-accent: #ac413f;        /* amarelo para realces e destaques */
-
-  /* Cores de detalhe */
-  --color-detail-light: #a8d56e;  /* cinza claro para bordas, sombras suaves */
-  --color-detail-dark: #2e6e1e;   /* cinza escuro para textos secundários */
-
-  /* Cores de fundo */
-  --color-bg-light: #fafafa;      /* fundo claro */
-  --color-bg-dark: #5d5dc2;       /* fundo escuro para temas noturnos */
-  --user-input: #657557;
-  --radial-gradient: radial-gradient(circle, #0d5024, #043425, #3b9fa9);
-  /* Cores para texto */
-  --color-text-secondary: #a8d56e; /* texto secundário, cinza moderado */
-
-  /* Outros */
-  --border-radius: 36px;           /* bordas arredondadas padrão */
-  --spacing-unit: 8px;            /* unidade base de espaçamento */
-
-  /* Fonts */
-  --font-headlines: 'Noto Sans JP', sans-serif;
-  
-
-  }
-
-html, body {
-  /* Garante que ambos os elementos ocupem toda a altura da tela */
-  height: 100%; 
-  /* Remove as margens e paddings padrão do navegador */
-  margin: 0; 
-  padding: 0;
+    --bg-dark: #121212; /* Fundo principal escuro */
+    --text-light: #E0E0E0; /* Texto principal claro */
+    --accent-green: #4CAF50; /* Verde de destaque (sucesso, score alto) */
+    --accent-red: #F44336; /* Vermelho de destaque (aviso, score baixo) */
+    --primary-color: #00FF7F; /* Verde néon/vibrante para interações */
+    --secondary-color: #1A1A1A; /* Cor de fundo secundária (blocos, cards) */
+    --border-color: #333333; /* Cor da borda sutil */
+    --shadow-color: rgba(0, 255, 127, 0.3); /* Sombra vibrante */
 }
 
+/* Reset Básico */
 * {
-  box-sizing: border-box;
-  color: var(--color-text-primary);
-  
-}
-
-header h1, h2, h3 {
-  font-family: var(--font-headlines);
-  font-size: 46px;
-  text-align: center;
-  justify-content: center;
-  color: var(--color-text-primary);
-  border-radius: 36px;
-  /*text-shadow: 0 5px 10px var(--color-detail-dark);
-*/
-}
-
-navbar {
-  display: flex;
-  border-radius: var(--border-radius);
-  border: 3px solid var(--color-detail-light);
-  padding: 10px;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  color: var(--color-text-primary);
-  margin-top: 14px;
-  margin-bottom: 14px;
-  gap: 20px;
-  background-color: var(--solar-punk-tree);
-  /*colocar so em ingles ou so em pt br*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  /* Gradiente radial, círculo, posicionado no centro. */
-  background-image: url('/assets/bg0.jpg');
-  /* Cor de fallback (se o gradiente não carregar) */
-  background-color: #000000;
-  
-  /* Altura e largura para visualização (ajuste conforme necessário) */
-  height: 100vh;
-  width: 100%;
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    padding-bottom: 50px; /* Espaço para o footer */
 }
 
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Cabeçalho e Título Principal */
+header {
+    padding: 40px 0 20px 0;
+    text-align: center;
+}
+
+.garrafais {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--primary-color);
+    text-shadow: 0 0 15px var(--shadow-color); /* Efeito neon sutil */
+}
+
+/* Navegação */
+navbar {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px 0;
+    margin-bottom: 40px;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+navbar a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: 600;
+    padding: 5px 10px;
+    transition: color 0.3s, background-color 0.3s;
+    border-radius: 5px;
+}
+
+navbar a:hover {
+    color: var(--bg-dark);
+    background-color: var(--primary-color);
+}
+
+/* Formulário de Pesquisa */
 .search-container {
-  display: flex;
-  gap: 10px;
-  align-items: center; /* alinha itens no eixo vertical */
-  border: 3px solid var(--color-detail-light);
-  border-radius: 36px;
-  text-align: center;
-  justify-content: center;
-  margin: 60px 0;
-  background-color: var(--light-green);
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
 }
 
 .user-input {
-  flex: 1; /* faz o input ocupar o máximo de espaço possível */
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 36px;
-  border: none;
-  outline: none; /* remove a borda padrão ao focar */
-  color: var(--color-text-primary);
-  background-color: var(--inputs);
+    width: 60%;
+    max-width: 500px;
+    padding: 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: border-color 0.3s;
 }
 
-.user-input::placeholder {
-  color: aqua;
+.user-input:focus {
+    border-color: var(--primary-color);
+    outline: none;
 }
 
-button {
-  text-align: center;
-  justify-content: center;
-  color: var(--color-text-secondary);
-  font-size: 16px;
-  border-radius: 36px;
-  padding: 10px 24px;
-  border: none;
-  cursor: pointer;
-  white-space: nowrap; 
-  background-color: var(--solar-punk-tree);
+.search, .addBtn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    color: var(--bg-dark);
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.1s;
 }
 
-.newItem {
-    background-color: rgb(225, 222, 199);
-    padding: 30px 40px;
-    color: white;
+.search:hover, .addBtn:hover {
+    background-color: var(--accent-green);
+    transform: translateY(-2px);
+}
+
+/* Títulos de Seção */
+h2, h3 {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--primary-color);
+    margin: 20px 0 15px 0;
+    border-left: 5px solid var(--primary-color);
+    padding-left: 10px;
+}
+
+h3 {
+    color: var(--text-light);
+    border-left: 5px solid var(--text-light);
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: var(--border-color);
+    margin: 40px 0;
+}
+
+/* Seção de Resultado do Produto */
+.resultado {
     display: flex;
-    justify-content: center;
+    background-color: var(--secondary-color);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    align-items: flex-start;
+    gap: 30px;
 }
 
-.newItem:after {
-    content: "";
-    display: table;
-    clear: both;
+.imagem-produto {
+    width: 250px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
 }
 
-
-.container {
-  height: 100vh;
-  padding: 20px;
-  border-radius: 36px;
+.detalhes-produto {
+    list-style: none;
+    flex-grow: 1;
 }
 
-img {
-  height: 10rem;
-  width: fit-content;
+.detalhes-produto li {
+    background-color: #222;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border-left: 5px solid var(--primary-color);
 }
 
-.composicao {
-  height: max-content;
+.detalhes-produto li:last-child {
+    margin-bottom: 0;
 }
 
+.detalhes-produto ol {
+    margin-top: 5px;
+    padding-left: 20px;
+    list-style-type: decimal;
+    color: var(--accent-green);
+}
+
+.score-display {
+    font-weight: 700;
+    color: var(--accent-green);
+    font-size: 1.2rem;
+}
+
+/* Adicionar Novo Produto */
+.newItem {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.newItem input {
+    flex-grow: 1;
+    padding: 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.newItem input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* Histórico de Produtos (Tabela) */
+.myTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.myTable thead th {
+    background-color: var(--primary-color);
+    color: var(--bg-dark);
+    padding: 15px;
+    text-align: left;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.myTable td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--secondary-color);
+}
+
+.myTable td img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
 
 .score {
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 3rem;
-  width: 100px;
+    font-weight: 700;
+    color: var(--accent-green);
 }
 
-.resultado {
-  display: flex;
-  text-align: justify;
-  justify-content: space-around;
-  font-family:Verdana, Geneva, Tahoma, sans-serif, Times, serif, Tahoma, Geneva, Verdana, sans-serif;
-  color: var(--s);
-  gap: 20px;
-  background-color: var(--solar-punk-tree);
-  border-radius: 36px;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content:space-between;
+.low-score {
+    color: var(--accent-red);
 }
 
-ul li {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background-color: var(--solar-punk-tree);
+/* Artigo e Textos Informativos */
+article p, div p {
+    margin-bottom: 15px;
+    text-align: justify;
 }
 
-.produto {
-  display: flex;
-  align-items: center;
-  justify-content:space-between;
-  border-radius: 36px;
-  gap: 20px;
-  background-color: var(--solar-punk-tree);
-
+.exemplos-green-washing ul {
+    list-style: disc;
+    padding-left: 40px;
+    margin-bottom: 20px;
 }
 
-
-p, li {
-  font-size: 18px;
-  line-height: 1.6;
-  color: var(--color-text-primary);
-  background-color: var(--solar-punk-tree);
+.exemplos-green-washing li {
+    margin-bottom: 8px;
 }
 
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid var(--border-color);
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* Responsividade Básica */
+@media (max-width: 768px) {
+    .garrafais {
+        font-size: 2.5rem;
+    }
+
+    navbar {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .search-container {
+        flex-direction: column;
+    }
+
+    .user-input {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .resultado {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .newItem {
+        flex-direction: column;
+    }
+
+    .newItem input {
+        width: 100%;
+    }
+}

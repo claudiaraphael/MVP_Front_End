@@ -1,166 +1,26 @@
-// coração da aplicação
-// conexão com endpoint da API
+/* transfer environment variables and then export them to app.py */
 
-// entrada do usuario
-const produto = document.getElementById("user-input");
+// Open Food Facts API endpoints
+const OFF_BASE = 'https://world.openfoodfacts.net'
 
-// 1 - pega o produto
+// fetch product by name
+const OFF_PRODUCT_NAME = OFF_BASE + '/cgi/search.pl?search_terms={name}&search_simple=1&action=process&json=1'
 
-// 2 - pega os selos de sustentabilidaade da info da endpoint da api
-// 3 - compara com os verdadeiros selos dos produtos
-// 4 - da o score de sustentabilidade
-// 5 - manda o score pro servidor do banco de dados
+// fetch product by barcode:
+const OFF_BARCODE = OFF_BASE + '/api/v2/product/{barcode}'
 
-/*
+get_product(name, barcode) {
+  // name comes from the frontend input
+  const name = name.trim();
+  const barcode = barcode.trim();
 
-código do professor
-funções pra interagir com o banco de dados
-tabela dinâmica
+  let url = OFF_BASE;
 
-*/ 
-
-/*
-  --------------------------------------------------------------------------------------
-  Função para obter a lista existente do servidor via requisição GET
-  --------------------------------------------------------------------------------------
-*/
-const getList = async () => {
-  let url = 'http://127.0.0.1:5000/produtos';
-  fetch(url, {
-    method: 'get',
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      data.produtos.forEach(item => insertList(item.nome, item.quantidade, item.valor))
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-}
-
-/*
-  --------------------------------------------------------------------------------------
-  Chamada da função para carregamento inicial dos dados
-  --------------------------------------------------------------------------------------
-*/
-getList()
-
-
-/*
-  --------------------------------------------------------------------------------------
-  Função para colocar um item na lista do servidor via requisição POST
-  --------------------------------------------------------------------------------------
-*/
-const postItem = async (inputProduct, inputQuantity, inputPrice) => {
-  const formData = new FormData();
-  formData.append('nome', inputProduct);
-  formData.append('quantidade', inputQuantity);
-  formData.append('valor', inputPrice);
-
-  let url = 'http://127.0.0.1:5000/produto';
-  fetch(url, {
-    method: 'post',
-    body: formData
-  })
-    .then((response) => response.json())
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-}
-
-
-/*
-  --------------------------------------------------------------------------------------
-  Função para criar um botão close para cada item da lista
-  --------------------------------------------------------------------------------------
-*/
-const insertButton = (parent) => {
-  let span = document.createElement("span");
-  let txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  parent.appendChild(span);
-}
-
-
-/*
-  --------------------------------------------------------------------------------------
-  Função para remover um item da lista de acordo com o click no botão close
-  --------------------------------------------------------------------------------------
-*/
-const removeElement = () => {
-  let close = document.getElementsByClassName("close");
-  // var table = document.getElementById('myTable');
-  let i;
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function () {
-      let div = this.parentElement.parentElement;
-      const nomeItem = div.getElementsByTagName('td')[0].innerHTML
-      if (confirm("Você tem certeza?")) {
-        div.remove()
-        deleteItem(nomeItem)
-        alert("Removido!")
-      }
-    }
+  if (name) {
+    url = OFF_PRODUCT_NAME.replace('{name}', name)
+  } else if (barcode) {
+    url = OFF_BARCODE.replace('{barcode}', barcode)
   }
-}
 
-/*
-  --------------------------------------------------------------------------------------
-  Função para deletar um item da lista do servidor via requisição DELETE
-  --------------------------------------------------------------------------------------
-*/
-const deleteItem = (item) => {
-  console.log(item)
-  let url = 'http://127.0.0.1:5000/produto?nome=' + item;
-  fetch(url, {
-    method: 'delete'
-  })
-    .then((response) => response.json())
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-}
-
-/*
-  --------------------------------------------------------------------------------------
-  Função para adicionar um novo item com nome, quantidade e valor 
-  --------------------------------------------------------------------------------------
-*/
-const newItem = () => {
-  let inputProduct = document.getElementById("newInput").value;
-  let inputQuantity = document.getElementById("newQuantity").value;
-  let inputPrice = document.getElementById("newPrice").value;
-
-  if (inputProduct === '') {
-    alert("Escreva o nome de um item!");
-  } else if (isNaN(inputQuantity) || isNaN(inputPrice)) {
-    alert("Quantidade e valor precisam ser números!");
-  } else {
-    insertList(inputProduct, inputQuantity, inputPrice)
-    postItem(inputProduct, inputQuantity, inputPrice)
-    alert("Item adicionado!")
-  }
-}
-
-/*
-  --------------------------------------------------------------------------------------
-  Função para inserir items na lista apresentada
-  --------------------------------------------------------------------------------------
-*/
-const insertList = (nameProduct, quantity, price) => {
-  var item = [nameProduct, quantity, price]
-  var table = document.getElementById('myTable');
-  var row = table.insertRow();
-
-  for (var i = 0; i < item.length; i++) {
-    var cel = row.insertCell(i);
-    cel.textContent = item[i];
-  }
-  insertButton(row.insertCell(-1))
-  document.getElementById("newInput").value = "";
-  document.getElementById("newQuantity").value = "";
-  document.getElementById("newPrice").value = "";
-
-  removeElement()
+  return fetch(url)
 }
