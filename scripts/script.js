@@ -1,26 +1,96 @@
-/* transfer environment variables and then export them to app.py */
-
-// Open Food Facts API endpoints
-const OFF_BASE = 'https://world.openfoodfacts.net'
-
-// fetch product by name
-const OFF_PRODUCT_NAME = OFF_BASE + '/cgi/search.pl?search_terms={name}&search_simple=1&action=process&json=1'
-
-// fetch product by barcode:
-const OFF_BARCODE = OFF_BASE + '/api/v2/product/{barcode}'
-
-get_product(name, barcode) {
-  // name comes from the frontend input
-  const name = name.trim();
-  const barcode = barcode.trim();
-
-  let url = OFF_BASE;
-
-  if (name) {
-    url = OFF_PRODUCT_NAME.replace('{name}', name)
-  } else if (barcode) {
-    url = OFF_BARCODE.replace('{barcode}', barcode)
+// Fetch product by barcode OR name
+async function fetchProduct(query, type = 'barcode') {
+  try {
+    let url;
+    
+    if (type === 'barcode') {
+      url = `http://localhost:5000/api/openfoodfacts/product/${query}`;
+    } else if (type === 'name') {
+      url = `http://localhost:5000/api/openfoodfacts/search?name=${query}`;
+    } else {
+      throw new Error('Invalid type. Use "barcode" or "name"');
+    }
+    
+    const response = await fetch(url);
+    const data = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(data.error || 'Request failed');
+    }
+    
+    return data;
+    
+  } catch (error) {
+    console.error('Fetch error:', error);
+    throw error;
   }
+}
 
-  return fetch(url)
+// Display single product
+function displayProduct(product) {
+  const resultDiv = document.getElementById('result');
+  resultDiv.innerHTML = `
+    <div class="product-card">
+      <img src="${product.image_url || 'placeholder.jpg'}" alt="${product.name}">
+      <h2>${product.name}</h2>
+      <p><strong>Barcode:</strong> ${product.barcode}</p>
+      <p><strong>Brands:</strong> ${product.brands || 'N/A'}</p>
+      <p><strong>Ecoscore:</strong> ${product.ecoscore_grade || 'N/A'}</p>
+      <p><strong>Categories:</strong> ${product.categories || 'N/A'}</p>
+    </div>
+  `;
+}
+
+// Display multiple products (search results)
+function displayResults(products) {
+  const resultDiv = document.getElementById('result');
+  
+  if (products.length === 0) {
+    resultDiv.innerHTML = '<p>No products found</p>';
+    return;
+  }
+  
+  resultDiv.innerHTML = products.map(product => `
+    <div class="product-card">
+      <img src="${product.image_url || 'placeholder.jpg'}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      <p><strong>Barcode:</strong> ${product.barcode}</p>
+      <p><strong>Brands:</strong> ${product.brands || 'N/A'}</p>
+      <p><strong>Ecoscore:</strong> ${product.ecoscore_grade || 'N/A'}</p>
+    </div>
+  `).join('');
+}
+
+// Usage examples
+document.getElementById('btnScanBarcode').addEventListener('click', async () => {
+  const barcode = document.getElementById('inputBarcode').value;
+  
+  if (!barcode) {
+    alert('Enter a barcode');
+    return;
+  }
+  
+  try {
+    const data = await fetchProduct(barcode, 'barcode');
+    displayProduct(data);
+  } catch (error) {
+    alert('Error fetching product: ' + error.message);
+  }
+});
+
+document.getElementById('btnSearchName').addEventListener('click', async () => {
+  const name = document.getElementById('inputName').value;
+  
+  if (!name) {
+    alert('Enter a product name');
+    return;
+  }
+  
+  try {
+    const data = await fetchProduct(name, 'name');
+    displayResults(data.products);
+  } catch (error) {
+    alert('Error searching products: ' + error.message);
+  }
+});
 }
