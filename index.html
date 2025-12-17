@@ -7,26 +7,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    <title>Detecte Green-Washing</title>
+    <title>Diet Restriction Detector</title>
 </head>
 <body>
     <div class="container">
         <header>
             
-            <h1 class="garrafais">Truth Label</h1>            
+            <h1 class="garrafais">Truth Label</h1>
+            <h2 class="tagline">Combating Health Washing, One Product at a Time</h2>            
             
         </header>
         <navbar>
-            <a href="#cadastro-usuario">Cadastro</a> 
-            <a href="#historico-produtos">Histórico de Produtos</a> 
-            <a href="#add-produto">Adicione um Novo Produto</a>
+            <a href="#historico-produtos">Product History</a> 
             <a href="#o-que-e-gw">What is Truth Label?</a>
             <a href="#sobre-off">What is Open Food Facts?</a>
         </navbar>
 
+        <h3 class="cta">Detect how healthy a product is with our barcode scanner</h3>
+
         <div class="search-container">
             <input type="text" id="userInput" class="user-input" placeholder="Sabão Eco Green, 7891234567890"> 
-            <button onclick='getProduct()' class="search">Search</button>
+            <button onclick='fetchProduct()' class="btnScanBarcode">Scan</button>
         </div>
 
         <div class="resultado" id="resultadoProduto">
@@ -34,68 +35,42 @@
             <div class="infos-produto"></div>
             <ul class="detalhes-produto">
                 <li>
-                    Nome: <span id="nomeProduto">sabao eco green</span>
+                    <span id="nomeProduto">sabao eco green</span>
                 </li>
+                
                 <li>
-                    Selos:
-                    <ol id="selosProduto">
-                        <li>Autenticidade Cop 30</li>
-                        <li>ISO: 538000</li>
-                        <li>Inquisição do Projeto Tamar</li>
-                    </ol>
-                </li>
-                <li>
-                    Score: <span id="scoreProduto" class="score-display">95,6% sustentável</span>
+                    Score: <span id="scoreProduto" class="score-display"> 95,6% sustentável</span>
                 </li>
                 <li class="test">
-                    informações nutricionais
+                    Resumo: Product is Vegan, Gluten-Free, and has 0 additives.
                 </li>  
             </ul>     
         </div>
 
         <hr>
-
-        <section id="cadastro-usuario" class="section-block">
-            <h2>Cadastre-se para Salvar Seu Histórico</h2>
-            <form class="cadastro-form">
-                <input type="text" placeholder="Seu Nome Completo" required>
-                <input type="email" placeholder="Seu Melhor E-mail" required>
-                <input type="password" placeholder="Crie uma Senha" required>
-                <button type="submit" class="addBtn">Criar Conta</button>
-            </form>
-        </section>
-
-        <hr>
-
-         <h2 id="add-produto">Adicione um Novo Produto</h2>
-
-         <section class="newItem">
-            <input type="text" id="newInput" placeholder="Nome do Produto:">
-            <input type="text" id="newScore" placeholder="Score de Sustentabilidade (ex: 90):">
-            <input type="text" id="newImage" placeholder="URL da Imagem:">
-            <button onclick="addNewItem()" class="addBtn">Adicionar Produto</button>
-        </section>
-
-        <hr>
          
         <div id="historico-produtos" class="historico-produtos">
-            <h2>Histórico de Produtos</h2>
+            <h2>Product History</h2>
             <section class="items">
                 <table class="myTable">
                     <thead>
                         <tr>
                             <th>Produto</th>
-                            <th>Score</th>
+                            <th>Safe & Transparent Score</th>
+                            <th>Meaning</th>
                         </tr>
                     </thead>
                     <tbody id="historicoTbody">
                         <tr>
                             <td><img src="assets/sabao_eco_green.png" alt="Sabão EcoGreen"> Sabão em Pó EcoGreen</td>
-                            <td><div class="score">90% confiável</div></td>
+                            <td><div class="score">90% reliable</div></td>
+                            <td><div class="resumo">Product is Vegan, Gluten-Free, and has 0 additives.</div></td>
                         </tr>
                         <tr>
                             <td><img src="assets/esponja_eco.jpg" alt="Shampoo Vegano"> Shampoo Vegano</td>
-                            <td><div class="score low-score">50% confiável</div></td>
+                            <td><div class="score low-score">50% reliable</div></td>
+                            <td><div class="resumo"> Product is Vegetarian, but contains allergens like Milk or Soy.</div></td>
+
                         </tr>
                     </tbody>
                 </table>
@@ -105,52 +80,27 @@
         <hr>
 
         <article id="sobre-anti-gw">
-            <h2>Sobre a Anti Green Washing</h2>
+            <h2>About Truth Label</h2>
             <p>
-                A Anti Green Washing é uma plataforma dedicada a identificar e combater práticas de greenwashing adotadas por empresas e produtos alimentícios. Nosso objetivo é fornecer aos consumidores informações transparentes e confiáveis sobre a sustentabilidade dos produtos que consomem, ajudando-os a fazer escolhas mais conscientes e responsáveis.
-            </p>
+                Truth Label is an open-source initiative dedicated to honesty in the aisles. We use barcode scanning technology to verify sustainability claims, ensuring that the "eco-friendly" or "healthy" products you choose actually live up to their promises. No more guessing, just the truth            </p>
             <p>
-                Nós utilizamos dados do Open Food Facts para analisar e avaliar a autenticidade das alegações ambientais feitas por diferentes marcas. Através de nossa plataforma, os usuários podem pesquisar produtos específicos, visualizar suas avaliações de sustentabilidade e acessar informações detalhadas sobre seus ingredientes, processos de fabricação e certificações ambientais.
-            </p>
-        
-
-
-            <div id="o-que-e-gw" class="green-washing">
-            <h2>O que é Green Washing?</h2>
-
             <p>
-                Greenwashing é uma prática enganosa adotada por empresas, organizações ou governos para se promoverem como ambientalmente responsáveis ou sustentáveis, quando na verdade não adotam práticas verdadeiramente sustentáveis. 
+                Our mission is to empower consumers with accurate information, helping them make informed choices that align with their diets. By exposing health washing and greenwashing tactics, we aim to create a marketplace where transparency is the norm and trust is earned.   
             </p>
-            <p>    
-                Também conhecido como lavagem verde ou maquiagem verde, consiste na divulgação de informações falsas, exageradas ou enganosas que tentam criar uma imagem de preocupação ambiental para melhorar a reputação pública e atrair consumidores. Essa estratégia explora a crescente conscientização ambiental para marketing, mas se caracteriza como publicidade enganosa e pode induzir o consumidor ao erro.​
-            </p>
-            <div class="exemplos-green-washing">
-                <h3>Exemplos Comuns de Green Washing:</h3>
-                <ul>
-                    <li>Uso de termos vagos como "eco-friendly" ou "verde" sem fornecer evidências concretas.</li>
-                    <li>Destacar um único aspecto ambiental positivo, enquanto ignora impactos negativos maiores.</li>
-                    <li>Certificações ambientais falsas ou enganosas.</li>
-                    <li>Campanhas publicitárias que exageram os benefícios ambientais de um produto ou serviço.</li>
-                </ul>
-            </div>    
         </article>
         
         <hr>
             
-        <div id="sobre-off">
-            <h2>O que é Open Food Facts?</h2>
+        <article id="sobre-off">
+            <h2>What is Open Food Facts?</h2>
             <p>
                 Open Food Facts is a free, open, and collaborative database of food products from around the world, created by thousands of volunteers. It includes detailed information about each product such as ingredients, allergens, nutritional values (including Nutri-Score), packaging, brands, labels (organic, gluten-free, vegan, etc.), and traceability data. The database is open data, licensed for reuse by anyone for any purpose, and it supports apps for scanning products to access and contribute data. It aims to help consumers make better food choices and also supports scientific and educational uses. The project was launched in 2012 and now contains millions of products contributed by a global community through apps and websites
             </p>
-        </div>
+        </article>
 
         <footer>
-            <p>© 2025 Anti Green Washing é um projeto open source. Foi criado por uma estudante da PUC Rio para conclusão do primeiro período da pós graduação em Engenharia de Software</p>
+            <p>© 2025 Truth Label is an open-source project, created by Cláudia Rodrigues, Post-Graduate Software Engineering student at PUC-Rio. 
         </footer>
-
-
-
-        </div>
     </div>
     <script src="scripts/app.js"></script>
 </body>
