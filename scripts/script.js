@@ -85,7 +85,6 @@ document.getElementById('btnSearchName').addEventListener('click', async () => {
     alert('Enter a product name');
     return;
   }
-  
   try {
     const data = await fetchProduct(name, 'name');
     displayResults(data.products);
@@ -93,4 +92,3 @@ document.getElementById('btnSearchName').addEventListener('click', async () => {
     alert('Error searching products: ' + error.message);
   }
 });
-}
