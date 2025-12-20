@@ -7,31 +7,37 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    
     <title>Truth Label</title>
 </head>
 <body>
     <div class="container">
         <header>
-            
             <h1 class="garrafais">Truth Label</h1>
-            <h2 class="tagline">Combating Health Washing, One Product at a Time</h2>            
-            
         </header>
+
         <navbar>
             <a href="#historico-produtos">Product History</a> 
             <a href="#o-que-e-gw">What is Truth Label?</a>
             <a href="#sobre-off">What is Open Food Facts?</a>
         </navbar>
 
-        <h3 class="cta">Detect how healthy a product is with our barcode scanner</h3>
+        <h3 class="cta">Scan to be conscious of what you consume</h3>
 
         <div class="search-container">
-            <input type="text" id="userInput" class="user-input" placeholder="Sabão Eco Green, 7891234567890"> 
-            <button onclick='fetchProduct()' class="btnScanBarcode">Scan</button>
+        <input type="text" id="userInput" class="user-input" placeholder="Type name, barcode or leave empty to scan...">
+    
+        <div class="container-botoes">
+            <button id="btnAction" class="btnScanBarcode">Search / Scan</button>
         </div>
+</div>
 
+        <div id="scanner-container" style="display: none; width: 100%; max-height: 300px; margin: 15px auto;"></div>
+                
         <div class="resultado" id="resultadoProduto">
-            <img src="assets/sabao_eco_green.png" class="imagem-produto" alt="Imagem do Produto">       
+                    <img src="assets/sabao_eco_green.png" class="imagem-produto" alt="Imagem do Produto">       
             <div class="infos-produto"></div>
             <ul class="detalhes-produto">
                 <li>
@@ -102,6 +108,6 @@
             <p>© 2025 Truth Label is an open-source project, created by Cláudia Rodrigues, Post-Graduate Software Engineering student at PUC-Rio. 
         </footer>
     </div>
-    <script src="scripts/app.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 </html>

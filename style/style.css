@@ -73,6 +73,16 @@ navbar a:hover {
     background-color: var(--primary-color);
 }
 
+#scanner-container {
+    display: none; 
+    width: 100%; 
+    max-width: 500px; 
+    margin: 10px auto;
+    border: 1px solid #4CAF50;
+
+}
+
+
 /* Formulário de Pesquisa */
 .search-container {
     display: flex;
