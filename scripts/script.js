@@ -63,11 +63,11 @@ function startScanner() {
             constraints: { 
                 width: { min: 640 },
                 height: { min: 400 },
-                facingMode: "environment" 
+                facingMode: "environment" // uses back camera on phones
             }
         },
         decoder: { 
-            readers: ["ean_reader", "ean_8_reader"] 
+            readers: ["ean_reader", "ean_8_reader", "upc_reader"] 
         },
         locate: true // find the barcode in the image
     }, (err) => {

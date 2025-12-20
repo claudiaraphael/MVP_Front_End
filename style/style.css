@@ -143,6 +143,13 @@ navbar a:hover {
     display: block;
 }
 
+/* Hide the duplicate canvas Quagga sometimes creates */
+#scanner-container canvas.drawingBuffer {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 /* Títulos de Seção */
 h2, h3 {
     font-family: 'Noto Sans JP', sans-serif;
