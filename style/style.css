@@ -192,10 +192,11 @@ hr {
 
 .imagem-produto {
     width: 250px;
-    height: auto;
+    height: 250px;
+    object-fit:contain; /*mantem a proporcao da imagem sem precisar corta-la*/
     border-radius: 8px;
-    object-fit: cover;
-    border: 1px solid var(--border-color);
+    margin-bottom: 15px;
+    display: block;
 }
 
 .detalhes-produto {

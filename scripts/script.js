@@ -109,8 +109,8 @@ function displayProduct(product) {
     // Seleciona os elementos do HTML (certifique-se que os IDs existem no seu index.html)
     const nameElement = document.getElementById('nomeProduto'); // ou o ID que você usa para o nome
     const scoreElement = document.getElementById('scoreProduto');
-    const summaryElement = document.querySelector('.imagem-produto');
-    const imageElement = document.querySelector('.test'); 
+    const summaryElement = document.getElementById('resumoProduto');
+    const imageElement = document.getElementById('productImage'); 
 
     if (imageElement) {
         imageElement.src = product.image_url || 'S:\PUC\MVP\MVP_1\front_end\assets\sabao_eco_green.png';
@@ -119,11 +119,14 @@ function displayProduct(product) {
     if (nameElement) nameElement.innerText = product.name || "Produto sem nome";
     
     if (scoreElement) {
-        // Formata o score vindo do backend (ex: 50.0)
-        scoreElement.innerText = `Score: ${product.score}% sustentável`;
+        scoreElement.innerText = `${product.score}% sustentável`;
         
-        // logica das cores
-        scoreElement.className = product.score < 50 ? 'score-display low-score' : 'score-display';
+        // Aplica a classe de cor baseada no score definido no seu CSS
+        if (product.score < 50) {
+            scoreElement.classList.add('low-score');
+        } else {
+            scoreElement.classList.remove('low-score');
+        }
     }
 
     if (summaryElement) {
