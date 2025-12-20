@@ -125,6 +125,24 @@ navbar a:hover {
     transform: translateY(-2px);
 }
 
+#scanner-container {
+    display: none; 
+    width: 100%; 
+    max-width: 400px; 
+    margin: 20px auto;
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    overflow: hidden; /* Garante que o vídeo não saia das bordas arredondadas */
+    position: relative;
+}
+
+#scanner-container video, 
+#scanner-container canvas {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+}
+
 /* Títulos de Seção */
 h2, h3 {
     font-family: 'Noto Sans JP', sans-serif;

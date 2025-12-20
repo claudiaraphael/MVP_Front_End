@@ -1,5 +1,5 @@
 const SCAN_URL = 'http://127.0.0.1:5000/product/scan';  // Flask porta 5000 (backend)
-const SEARCH_URL = 'http://127.0.0.1:5000/product';
+const SEARCH_URL = 'http://127.0.0.1:5000/product/';
 
 // Função principal disparada pelo botão
 async function handleAction() {
@@ -41,6 +41,7 @@ async function fetchData(url, method, body = null) {
 
         // Ajuste: O POST retorna {product: {...}}, o GET retorna o objeto direto
         const productData = data.product || data;
+        console.log("Product to display: ", productData);
         displayProduct(productData);
 
     } catch (err) {
@@ -59,9 +60,16 @@ function startScanner() {
             name: "Live",
             type: "LiveStream",
             target: container,
-            constraints: { facingMode: "environment" }
+            constraints: { 
+                width: { min: 640 },
+                height: { min: 400 },
+                facingMode: "environment" 
+            }
         },
-        decoder: { readers: ["ean_reader"] }
+        decoder: { 
+            readers: ["ean_reader", "ean_8_reader"] 
+        },
+        locate: true // find the barcode in the image
     }, (err) => {
         if (err) {
             alert("Erro na câmera: " + err);
@@ -73,10 +81,13 @@ function startScanner() {
 
     Quagga.onDetected((data) => {
         const code = data.codeResult.code;
+        console.log("Código detectado: ", code)
+
         Quagga.stop();
         container.style.display = 'none';
+        
         document.getElementById('userInput').value = code;
-        // CORREÇÃO AQUI - USA SCAN_URL
+        
         fetchData(SCAN_URL, 'POST', { barcode: code });
     });
 }
@@ -91,3 +102,31 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("ERRO: O botão com ID 'btnAction' não foi encontrado no HTML.");
     }
 });
+
+function displayProduct(product) {
+    console.log("Renderizando produto:", product);
+
+    // Seleciona os elementos do HTML (certifique-se que os IDs existem no seu index.html)
+    const nameElement = document.getElementById('productName'); // ou o ID que você usa para o nome
+    const scoreElement = document.getElementById('productScore');
+    const summaryElement = document.getElementById('productSummary');
+    const imageElement = document.getElementById('productImage'); 
+
+    if (imageElement) {
+        // Se houver URL, exibe a foto. Se não, você pode usar uma imagem padrão (placeholder)
+        imageElement.src = product.image_url || 'caminho/para/imagem-padrao.png';
+        imageElement.alt = product.name;
+    }
+    if (nameElement) nameElement.innerText = product.name || "Produto sem nome";
+    
+    if (scoreElement) {
+        // Formata o score vindo do backend (ex: 50.0)
+        scoreElement.innerText = `Score: ${product.score}% sustentável`;
+    }
+
+    if (summaryElement) {
+        // Cria um resumo baseado nas tags que recebemos do seu backend
+        const additivesCount = product.additives_tags ? product.additives_tags.split(',').length : 0;
+        summaryElement.innerText = `Resumo: Nova Group ${product.nova_group}, contém ${additivesCount} aditivos.`;
+    }
+}
