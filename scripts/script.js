@@ -92,7 +92,7 @@ function startScanner() {
     });
 }
 
-// Vincula o evento ao botão (Certifique-se que o ID bate com o HTML)
+// Vincula o evento ao botão
 document.addEventListener('DOMContentLoaded', () => {
     const actionBtn = document.getElementById('btnAction'); 
     if (actionBtn) {
@@ -107,14 +107,13 @@ function displayProduct(product) {
     console.log("Renderizando produto:", product);
 
     // Seleciona os elementos do HTML (certifique-se que os IDs existem no seu index.html)
-    const nameElement = document.getElementById('productName'); // ou o ID que você usa para o nome
-    const scoreElement = document.getElementById('productScore');
-    const summaryElement = document.getElementById('productSummary');
-    const imageElement = document.getElementById('productImage'); 
+    const nameElement = document.getElementById('nomeProduto'); // ou o ID que você usa para o nome
+    const scoreElement = document.getElementById('scoreProduto');
+    const summaryElement = document.querySelector('.imagem-produto');
+    const imageElement = document.querySelector('.test'); 
 
     if (imageElement) {
-        // Se houver URL, exibe a foto. Se não, você pode usar uma imagem padrão (placeholder)
-        imageElement.src = product.image_url || 'caminho/para/imagem-padrao.png';
+        imageElement.src = product.image_url || 'S:\PUC\MVP\MVP_1\front_end\assets\sabao_eco_green.png';
         imageElement.alt = product.name;
     }
     if (nameElement) nameElement.innerText = product.name || "Produto sem nome";
@@ -122,11 +121,14 @@ function displayProduct(product) {
     if (scoreElement) {
         // Formata o score vindo do backend (ex: 50.0)
         scoreElement.innerText = `Score: ${product.score}% sustentável`;
+        
+        // logica das cores
+        scoreElement.className = product.score < 50 ? 'score-display low-score' : 'score-display';
     }
 
     if (summaryElement) {
-        // Cria um resumo baseado nas tags que recebemos do seu backend
+        // Cria um resumo baseado nas tags que recebemos do backend
         const additivesCount = product.additives_tags ? product.additives_tags.split(',').length : 0;
-        summaryElement.innerText = `Resumo: Nova Group ${product.nova_group}, contém ${additivesCount} aditivos.`;
+        summaryElement.innerText = `Resumo: Nova Group ${product.nova_group}, ${product.additives_tags ? product.additives_tags.split(',').length : 0} aditivos.`;    
     }
 }
