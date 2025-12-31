@@ -82,6 +82,22 @@ navbar a:hover {
 
 }
 
+#scanner-container video {
+    width: 100%;
+    height: auto;
+    transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+}
+
+/* O Quagga cria um canvas automaticamente, precisamos garantir que ele fique por cima */
+#scanner-container canvas.drawingBuffer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none; /* Garante que o canvas não bloqueie cliques */
+    z-index: 10;
+}
 
 /* Formulário de Pesquisa */
 .search-container {
@@ -181,6 +197,8 @@ hr {
 
 /* Seção de Resultado do Produto */
 .resultado {
+        font-size: 18px;
+
     display: flex;
     background-color: var(--secondary-color);
     padding: 30px;
@@ -192,7 +210,7 @@ hr {
 
 .imagem-produto {
     width: 250px;
-    height: 250px;
+    height: 400px;
     object-fit:contain; /*mantem a proporcao da imagem sem precisar corta-la*/
     border-radius: 8px;
     margin-bottom: 15px;
@@ -228,6 +246,109 @@ hr {
     color: var(--accent-green);
     font-size: 1.2rem;
 }
+
+.info-grid p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+    border-left: 3px solid #4CAF50; /* Verde para destacar */
+    padding-left: 10px;
+}
+
+.small-text {
+    font-size: 0.8rem;
+    color: #888;
+    display: block;
+    margin-top: 4px;
+}
+
+.low-score { color: #ff4d4d; border-left-color: #ff4d4d !important; }
+.high-score { color: #2ecc71; border-left-color: #2ecc71 !important; }
+
+/* Container dos Selos de Certificação */
+.labels-container {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.badge-label {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    border: 1px solid #2e7d32;
+}
+
+.badge-none {
+    color: #999;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+/* Grade de Detalhes */
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 10px;
+    border-top: 1px solid #444;
+    padding-top: 10px;
+}
+
+.info-box strong {
+    display: block;
+    color: #bbb;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+.nutri-grade {
+    font-weight: bold;
+    color: #4CAF50;
+    font-size: 1.1rem;
+}
+
+.additives-section {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: #aaa;
+    background: #2a2a2a;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+/* Destaque para Alérgenos */
+.allergen-highlight {
+    background-color: #fff3cd; /* Amarelo suave de alerta */
+    border: 1px solid #ffeeba;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 15px;
+    color: #856404;
+}
+
+.allergen-highlight strong {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.allergen-highlight p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Cores para o Nutri-Score */
+.grade-a { color: #1e8d4e; }
+.grade-c { color: #ffcc00; }
+.grade-e { color: #ff4d4d; }
 
 
 /* Histórico de Produtos (Tabela) */

@@ -61,28 +61,18 @@
         <div id="historico-produtos" class="historico-produtos">
             <h2>Product History</h2>
             <section class="items">
-                <table class="myTable">
-                    <thead>
-                        <tr>
-                            <th>Produto</th>
-                            <th>Safe & Transparent Score</th>
-                            <th>Meaning</th>
-                        </tr>
-                    </thead>
-                    <tbody id="historicoTbody">
-                        <tr>
-                            <td><img src="assets/sabao_eco_green.png" alt="Sabão EcoGreen"> Sabão em Pó EcoGreen</td>
-                            <td><div class="score">90% reliable</div></td>
-                            <td><div class="resumo">Product is Vegan, Gluten-Free, and has 0 additives.</div></td>
-                        </tr>
-                        <tr>
-                            <td><img src="assets/esponja_eco.jpg" alt="Shampoo Vegano"> Shampoo Vegano</td>
-                            <td><div class="score low-score">50% reliable</div></td>
-                            <td><div class="resumo"> Product is Vegetarian, but contains allergens like Milk or Soy.</div></td>
-
-                        </tr>
+            <table class="myTable" id="historyTable">
+                <thead>
+                    <tr>
+                        <th>Imagem</th>
+                        <th>Product</th>
+                        <th>Score</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
                     </tbody>
-                </table>
+            </table>    
             </section>    
         </div>    
 
@@ -91,7 +81,7 @@
         <article id="sobre-anti-gw">
             <h2>About Truth Label</h2>
             <p>
-                Truth Label is an open-source initiative dedicated to honesty in the aisles. We use barcode scanning technology to verify sustainability claims, ensuring that the "eco-friendly" or "healthy" products you choose actually live up to their promises. No more guessing, just the truth            </p>
+                Truth Label is an open-source initiative dedicated to providing relevant nutritional information about food. We use barcode scanning technology to verify sustainability claims, inform about allergens, processed goods and their labels, ensuring that the "eco-friendly" or "healthy" products you choose actually live up to their promises. No more guessing, just the truth. We consume data from the API <a href="https://world.openfoodfacts.org/">Open Food Facts.</a>            </p>
             <p>
             <p>
                 Our mission is to empower consumers with accurate information, helping them make informed choices that align with their diets. By exposing health washing and greenwashing tactics, we aim to create a marketplace where transparency is the norm and trust is earned.   
