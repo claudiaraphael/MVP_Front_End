@@ -22,7 +22,7 @@ async function handleAction() {
     const query = inputField.value.trim();
 
     if (!query) {
-        if (confirm("Deseja abrir a câmera para escanear?")) {
+        if (confirm("Do you accept to open the camera and scan?")) {
             startScanner();
         }
     } else if (/^\d+$/.test(query)) {
@@ -77,7 +77,7 @@ async function loadHistory() {
     try {
         const response = await fetch(LIST_URL);
         const data = await response.json();
-        console.log("Dados recebidos do Flask:", data);
+        console.log("Data received from Flask:", data);
         
         tableBody.innerHTML = ''; 
 
@@ -96,15 +96,15 @@ async function loadHistory() {
                 tableBody.appendChild(tr);
             });
         } else {
-            tableBody.innerHTML = '<tr><td colspan="4">Nenhum produto no histórico.</td></tr>';
+            tableBody.innerHTML = '<tr><td colspan="4">No product in history.</td></tr>';
         }
     } catch (e) { 
-        console.error("Erro na requisição do histórico:", e); 
+        console.error("Error in history query request:", e); 
     }
 }
 
 async function deleteProduct(barcode) {
-    if (!confirm("Tem certeza que deseja remover este produto?")) return;
+    if (!confirm("Are you sure you want to delete the product?")) return;
 
     try {
         const response = await fetch(DELETE_URL, {
@@ -116,15 +116,15 @@ async function deleteProduct(barcode) {
         if (response.ok) {
             loadHistory(); 
         } else {
-            alert("Erro ao deletar o produto.");
+            alert("Error deleting the product.");
         }
     } catch (error) {
-        console.error("Erro no DELETE:", error);
+        console.error("Error on DELETE:", error);
     }
 }
 
 function displayProduct(product) {
-    console.log("Renderizando Truth Label completo:", product);
+    console.log("Renderizando complete Truth Label:", product);
 
     const nameElement = document.getElementById('nomeProduto');
     const scoreElement = document.getElementById('scoreProduto');
@@ -133,32 +133,32 @@ function displayProduct(product) {
 
     // Imagem e Nome com Fallbacks
     if (imageElement) imageElement.src = product.image_url || 'assets/default.png';
-    if (nameElement) nameElement.innerText = product.name || "Produto não identificado";
+    if (nameElement) nameElement.innerText = product.name || "Product couldn't be found";
     
     // 1. Score com cor dinâmica
     if (scoreElement) {
-        scoreElement.innerText = `${product.score}% sustentável`;
+        scoreElement.innerText = `${product.score}% sustainable`;
         scoreElement.className = product.score < 50 ? 'low-score' : 'high-score';
     }
 
     if (summaryElement) {
-        // 2. Mapeamento de Emojis para Alérgenos
+        // 2. Mapping emogis for allergens
         const allergenEmojis = {
-            'en:milk': '🥛 Leite',
-            'en:eggs': '🥚 Ovos',
-            'en:soybeans': '🫘 Soja',
-            'en:nuts': '🥜 Nozes/Castanhas',
-            'en:gluten': '🌾 Glúten',
-            'en:fish': '🐟 Peixe',
-            'en:mustard': '🌭 Mostarda',
-            'en:sesame-seeds': '🥯 Gergelim'
+            'en:milk': '🥛 Milk',
+            'en:eggs': '🥚 Eggs',
+            'en:soybeans': '🫘 Soybeans',
+            'en:nuts': '🥜 Nuts/Coconuts',
+            'en:gluten': '🌾 Gluten',
+            'en:fish': '🐟 Fish',
+            'en:mustard': '🌭 Mustard',
+            'en:sesame-seeds': '🥯 Sesame seeds'
         };
 
         // 3. Tratamento de Labels (Certificações como Selos)
         const labels = product.labels_tags ? product.labels_tags.split(',') : [];
         const labelsHTML = labels.length > 0 
             ? labels.map(l => `<span class="badge-label">${l.replace('en:', '').replace(/-/g, ' ')}</span>`).join('')
-            : '<span class="badge-none">Sem selos ambientais</span>';
+            : '<span class="badge-none">No environmental labels</span>';
 
         // 4. Tratamento dos Alérgenos com Destaque
         const allergensRaw = product.allergens_tags || "";
@@ -166,13 +166,13 @@ function displayProduct(product) {
             ? allergensRaw.split(',').map(tag => {
                 return allergenEmojis[tag] || `⚠️ ${tag.replace('en:', '').trim()}`;
               }).join(' • ')
-            : "✅ Nenhum alérgeno declarado";
+            : "✅ No allergens declared";
 
         // 5. Informações Nutricionais e Críticas
         const nutrition = product.nutriscore_grade ? product.nutriscore_grade.toUpperCase() : 'N/A';
-        const isVegan = product.ingredients_analysis_tags?.includes('en:vegan') ? '🌱 Vegano' : '🥩 Não Vegano';
-        const palmOil = product.ingredients_analysis_tags?.includes('en:palm-oil') ? '⚠️ Contém Óleo de Palma' : '✅ Sem Óleo de Palma';
-        const descricao = product.description || product.generic_name || "Descrição detalhada não disponível.";
+        const isVegan = product.ingredients_analysis_tags?.includes('en:vegan') ? '🌱 Vegan' : '🥩 Not Vegan';
+        const palmOil = product.ingredients_analysis_tags?.includes('en:palm-oil') ? '⚠️ Contains Palm Oil' : '✅ No Palm Oil';
+        const descricao = product.description || product.generic_name || "Detailed description not available.";
 
         // 6. Montagem do HTML Final
         summaryElement.innerHTML = `
@@ -181,13 +181,13 @@ function displayProduct(product) {
             </div>
 
             <div class="allergen-highlight">
-                <strong>ALÉRGENOS:</strong>
+                <strong>ALLERGENS:</strong>
                 <p>${allergensList}</p>
             </div>
             
             <div class="details-grid">
                 <div class="info-box">
-                    <strong>Análise</strong>
+                    <strong>Analysis</strong>
                     <p>${isVegan}</p>
                     <p>${palmOil}</p>
                 </div>
@@ -199,7 +199,7 @@ function displayProduct(product) {
             </div>
 
             <div class="additives-section">
-                <strong>Aditivos:</strong> ${product.additives_tags || 'Nenhum detectado'}
+                <strong>Additives:</strong> ${product.additives_tags || 'None detected'}
                 <hr>
                 <small>${descricao}</small>
             </div>
